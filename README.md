@@ -1,5 +1,5 @@
 
-<h1 align="center">TicTacToe - Mobile</h1>
+<h1 align="center">📱 TicTacToe - Mobile</h1>
 <p align="center">
  <a href="#objetivo">Objetivo</a> •
  <a href="#tecnologias">Tecnologias</a> •
@@ -8,12 +8,12 @@
 </p>
 
 <div id="objetivo" style="margin-top:60px">
-  <h1>Objetivo do Projeto</h1>
-  <p align="center">🚀 Meu objetivo com este projeto é colocar em pratica meu conhecimento em React-native.</p>
+  <h1 align="center">🚀 Objetivo do Projeto</h1>
+  <p align="center"> Meu objetivo com este projeto é colocar em pratica meu conhecimento em React-native.</p>
 </div>
 
 <div id="tecnologias" style="margin-top:60px">
-  <h1>Tecnologias</h1>
+  <h1 align="center" >⚡️ Tecnologias</h1>
   <p align="start"> Estou trabalhando com React-Native e Expo </p>
   <p>Acesse a documentação abaixo:</p>
   <p align="start">
@@ -24,7 +24,7 @@
   </p>
 </div>
 
-<div id="image" style="margin-top:60px; align-items:center; justify-content:center">
-  <h1>Indetidade do projeto atualmente</h1>
-  <img src="readme/projetoimage.png" width="300"/>
+<div id="image" style="margin-top:60px;">
+  <h1 align="center">✨ Indetidade do projeto atualmente</h1>
+  <img style="margin-left:150px" src="readme/projetoimage.png" width="300"/>
 </div>

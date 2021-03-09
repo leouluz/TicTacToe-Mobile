@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import { Colors, Cell } from './styles'
 
 const { width } = Dimensions.get('window')
 
@@ -118,7 +119,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -130,33 +131,21 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   cell: {
-    height: 100,
-    width: 100,
-    backgroundColor: '#888',
-    margin: 4,
-    alignItems: 'center',
-    justifyContent: 'center'
+    ...Cell.cells,
+    backgroundColor: Colors.gray,
   },
   cellX: {
-    height: 100,
-    width: 100,
-    backgroundColor: '#f44336',
-    margin: 4,
-    alignItems: 'center',
-    justifyContent: 'center'
+    ...Cell.cells,
+    backgroundColor: Colors.red,
   },
   cellO: {
-    height: 100,
-    width: 100,
-    backgroundColor: '#2196f3',
-    margin: 4,
-    alignItems: 'center',
-    justifyContent: 'center'
+    ...Cell.cells,
+    backgroundColor: Colors.blue,
   },
   textCell: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#fff'
+    color: Colors.white
   },
 
   viewCells: {

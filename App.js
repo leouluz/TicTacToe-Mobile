@@ -65,6 +65,26 @@ export default function App() {
     setWinner(null);
   }
 
+  const handlerStyleCell = (item) => {
+    if (item) {
+      if (item == "X") {
+        return styles.cellX
+      } if (item == "O") {
+        return styles.cellO
+      }
+    } else {
+      return styles.cell
+    }
+  }
+
+  const handlerStyleBoard = (winner) => {
+    if (!winner) {
+      return styles.viewCells
+    } else {
+      return styles.viewCellsDisable
+    }
+  }
+
   useEffect(checkWinner, [board]);
   return (
     <View style={styles.container}>
@@ -76,7 +96,7 @@ export default function App() {
         onPress={handleReset}
       ><Text>Resetar jogo</Text>
       </TouchableOpacity>
-      <View style={styles.viewCells}>
+      <View style={handlerStyleBoard(winner)}>
         {
 
           board.map((item, index) => (
@@ -84,7 +104,7 @@ export default function App() {
               disabled={winner !== null ? true : false}
               key={index}
               onPress={() => handlerCellClick(index)}
-              style={styles.cell}
+              style={handlerStyleCell(item)}
             >
               <Text style={styles.textCell} > {item ? item : ""} </Text></TouchableOpacity>
           ))
@@ -117,6 +137,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  cellX: {
+    height: 100,
+    width: 100,
+    backgroundColor: '#f44336',
+    margin: 4,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  cellO: {
+    height: 100,
+    width: 100,
+    backgroundColor: '#2196f3',
+    margin: 4,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   textCell: {
     fontSize: 30,
     fontWeight: 'bold',
@@ -129,5 +165,13 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignContent: 'center',
     justifyContent: 'center'
-  }
+  },
+  viewCellsDisable: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignContent: 'center',
+    justifyContent: 'center',
+    opacity: 0.5
+  },
 });

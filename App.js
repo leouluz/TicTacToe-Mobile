@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Modal, SafeAreaView } from 'react-native';
+import LottieView from 'lottie-react-native';
 import { Colors, Cell } from './styles'
+import Trofeu from './json/rocket.json'
 
 const { width } = Dimensions.get('window')
 
@@ -89,17 +91,32 @@ export default function App() {
   useEffect(checkWinner, [board]);
   return (
     <View style={styles.container}>
+
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={winner !== null ? true : false}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+        }}>
+        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#3490dc" }}>
+          <LottieView
+            source={Trofeu}
+            autoPlay
+          />
+        </SafeAreaView>
+        <TouchableOpacity
+          onPress={handleReset}>
+          <Text>Resetar jogo</Text>
+        </TouchableOpacity>
+      </Modal>
+
       <View style={styles.playersView}>
         <Text>Jogador 1</Text>
         <Text>Jogador 2</Text>
       </View>
-      <TouchableOpacity
-        onPress={handleReset}
-      ><Text>Resetar jogo</Text>
-      </TouchableOpacity>
       <View style={handlerStyleBoard(winner)}>
         {
-
           board.map((item, index) => (
             <TouchableOpacity
               disabled={winner !== null ? true : false}
@@ -119,7 +136,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.white,
+    backgroundColor: '#ffbf00',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -132,20 +149,24 @@ const styles = StyleSheet.create({
   },
   cell: {
     ...Cell.cells,
-    backgroundColor: Colors.gray,
+    ...Cell.shadow,
+    backgroundColor: Colors.white,
   },
   cellX: {
     ...Cell.cells,
+    ...Cell.shadow,
     backgroundColor: Colors.red,
   },
   cellO: {
     ...Cell.cells,
+    ...Cell.shadow,
     backgroundColor: Colors.blue,
   },
   textCell: {
-    fontSize: 30,
+    fontSize: 60,
     fontWeight: 'bold',
-    color: Colors.white
+    color: Colors.white,
+    elevation: 5,
   },
 
   viewCells: {

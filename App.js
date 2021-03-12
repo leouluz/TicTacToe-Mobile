@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Modal, SafeAreaView } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { Colors, Cell } from './styles'
-import Trofeu from './json/rocket.json'
+import Trofeu from './json/trofeu.json'
 
 const { width } = Dimensions.get('window')
+const { height } = Dimensions.get('window')
 
 export default function App() {
 
@@ -48,8 +49,8 @@ export default function App() {
     checkDraw();
 
     possibleWaysToWin.forEach(cells => {
-      if (cells.every(cell => cell === "O")) setWinner("O Venceu!");
-      if (cells.every(cell => cell === "X")) setWinner("X Venceu!");
+      if (cells.every(cell => cell === "O")) setWinner("O");
+      if (cells.every(cell => cell === "X")) setWinner("X");
     })
 
   }
@@ -87,6 +88,15 @@ export default function App() {
       return styles.viewCellsDisable
     }
   }
+  const handlerStyleModal = (winner) => {
+    if (winner == 'O') {
+      return styles.ModalO
+    } if (winner == 'X') {
+      return styles.ModalX
+    } else {
+      return styles.ModalDraw
+    }
+  }
 
   useEffect(checkWinner, [board]);
   return (
@@ -99,16 +109,20 @@ export default function App() {
         onRequestClose={() => {
           Alert.alert('Modal has been closed.');
         }}>
-        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#3490dc" }}>
+        <SafeAreaView style={handlerStyleModal(winner)}>
           <LottieView
             source={Trofeu}
             autoPlay
           />
         </SafeAreaView>
-        <TouchableOpacity
-          onPress={handleReset}>
-          <Text>Resetar jogo</Text>
-        </TouchableOpacity>
+        <View style={styles.modalStyle}>
+          <TouchableOpacity
+            style={styles.buttonCongratulation}
+            onPress={handleReset}>
+            <Text>Resetar jogo</Text>
+          </TouchableOpacity>
+        </View>
+
       </Modal>
 
       <View style={styles.playersView}>
@@ -184,4 +198,36 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     opacity: 0.5
   },
+  buttonCongratulation: {
+    height: 60,
+    width: width * 0.8,
+    backgroundColor: Colors.yellow,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  ModalX: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.red
+  },
+  ModalO: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.blue
+  },
+  ModalDraw: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.gray
+  },
+  modalStyle: {
+    height: height,
+    width: width,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  }
 });

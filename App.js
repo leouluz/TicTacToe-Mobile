@@ -153,7 +153,7 @@ export default function App() {
           <TouchableOpacity
             style={styles.buttonCongratulation}
             onPress={handleReset}>
-            <Text>Resetar jogo</Text>
+            <Text>Reiniciar o jogo</Text>
           </TouchableOpacity>
         </View>
 

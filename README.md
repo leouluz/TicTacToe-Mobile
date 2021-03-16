@@ -17,7 +17,7 @@
 
 <div id="tecnologias" style="margin-top:60px">
   <h1 align="center" >⚡️ Tecnologias</h1>
-  <p align="start"> Estou trabalhando com React-Native e Expo </p>
+  <p align="start"> Estou trabalhando com React-Native, Expo e Lottie para animações. </p>
   <p>Acesse a documentação abaixo:</p>
   <p align="start">
     <a href="https://reactnative.dev/">React-native</a>
@@ -25,9 +25,15 @@
   <p align="start">
     <a href="https://docs.expo.io/">Expo</a>
   </p>
+  <p align="start">
+    <a href="https://docs.expo.io/versions/latest/sdk/lottie/">Lottie</a>
+  </p>
 </div>
 
 <div id="image" style="margin-top:60px;">
   <h1 align="center">✨ Indetidade do projeto atualmente</h1>
-  <img style="margin-left:150px" src="readme/projetoimage.png" width="300"/>
+  <div style="display:flex; flex-direction: row; justify-content: center;" >
+    <img src="readme/projetoimage.png" width="300"/>
+    <img src="readme/projetoimage2.png" width="300"/>
+  </div>
 </div>

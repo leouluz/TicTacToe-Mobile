@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Modal, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Modal, SafeAreaView, Animated } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { Colors, Cell } from './styles'
 import Trofeu from './json/trofeu.json'
@@ -16,6 +16,9 @@ export default function App() {
   const [board, setBoard] = useState(emptyBoard);
   const [player, setPlayer] = useState("O");
   const [winner, setWinner] = useState(null);
+  const [fontGreat, setfontGreat] = useState(new Animated.Value(0));
+  const [playerO, setPlayerO] = useState(0);
+  const [playerX, setPlayerX] = useState(0);
 
   //Verifica se existe um vencedor e define o proximo jogador caso não exista vencedor
   const handlerCellClick = (index) => {
@@ -49,8 +52,16 @@ export default function App() {
     checkDraw();
 
     possibleWaysToWin.forEach(cells => {
-      if (cells.every(cell => cell === "O")) setWinner("O");
-      if (cells.every(cell => cell === "X")) setWinner("X");
+      if (cells.every(cell => cell === "O")) {
+        setWinner("O");
+        let valor = playerO + 1
+        setPlayerO(valor)
+      }
+      if (cells.every(cell => cell === "X")) {
+        setWinner("X");
+        let valor = playerX + 1
+        setPlayerX(valor)
+      }
     })
 
   }
@@ -67,6 +78,7 @@ export default function App() {
     setPlayer("O")
     setBoard(emptyBoard);
     setWinner(null);
+    setfontGreat(new Animated.Value(0));
   }
 
   const handlerStyleCell = (item) => {
@@ -98,6 +110,17 @@ export default function App() {
     }
   }
 
+  if (winner !== null) {
+    Animated.timing(
+      fontGreat,
+      {
+        toValue: 30,
+        duration: 1000,
+        useNativeDriver: false
+      },
+    ).start()
+  }
+
   useEffect(checkWinner, [board]);
   return (
     <View style={styles.container}>
@@ -110,6 +133,17 @@ export default function App() {
           Alert.alert('Modal has been closed.');
         }}>
         <SafeAreaView style={handlerStyleModal(winner)}>
+          <View
+            style={styles.ViewModelText}
+          >
+            <Animated.Text
+              style={{
+                fontSize: fontGreat,
+                fontWeight: 'bold',
+                color: Colors.white
+              }}
+            >{winner !== 'Empatou' ? `Parabéns ao jogador ${winner}!` : 'Empatou!'}</Animated.Text>
+          </View>
           <LottieView
             source={Trofeu}
             autoPlay
@@ -126,8 +160,14 @@ export default function App() {
       </Modal>
 
       <View style={styles.playersView}>
-        <Text>Jogador 1</Text>
-        <Text>Jogador 2</Text>
+        <View style={styles.viewPoint} >
+          <Text style={styles.textPlayer} >Jogador O</Text>
+          <Text style={styles.textPlayerPoint} >{playerO}</Text>
+        </View>
+        <View style={styles.viewPoint} >
+          <Text style={styles.textPlayer} >Jogador X</Text>
+          <Text style={styles.textPlayerPoint} >{playerX}</Text>
+        </View>
       </View>
       <View style={handlerStyleBoard(winner)}>
         {
@@ -203,7 +243,8 @@ const styles = StyleSheet.create({
     width: width * 0.8,
     backgroundColor: Colors.yellow,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: '20%'
   },
   ModalX: {
     flex: 1,
@@ -229,5 +270,37 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'flex-end',
+  },
+  ViewModelText: {
+    flex: 1,
+    marginTop: '40%'
+  },
+  textPlayer: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: Colors.white
+  },
+  textPlayerPoint: {
+    alignSelf: 'center',
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: Colors.white,
+    textShadowColor: '#585858',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 10,
+  },
+  viewPoint: {
+    backgroundColor: Colors.purple,
+    padding: 8,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 5,
+      height: 5,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 8,
   }
 });

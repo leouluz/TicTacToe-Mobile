@@ -31,7 +31,7 @@
 
 <div id="image" style="margin-top:60px;">
   <h1 align="center">✨ Indetidade do projeto atualmente</h1>
-  <div style="display:flex; flex-direction: row; justify-content: center;" >
+  <div align="center" style="display:flex; flex-direction: row; justify-content: center;" >
     <img src="readme/bluewin.gif" width="250"/>
     <img src="readme/redwin.gif" width="250"/>
     <img src="readme/draw.gif" width="250"/>

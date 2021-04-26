@@ -1,6 +1,6 @@
-<h1 align="center">📱 TicTacToe - Mobile</h1>
+<h1 align="center">📱🕹️ TicTacToe - Mobile</h1>
 <h4 align="center" style="margin-bottom:30px"> 
-	🚧  Projeto 🚀 Em construção...  🚧
+	🕹️ MVP - Jogo da Velha
 </h4>
 <p align="center">
  <a href="#objetivo">Objetivo</a> •

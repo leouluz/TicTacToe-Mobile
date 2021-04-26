@@ -1,4 +1,3 @@
-
 <h1 align="center">📱 TicTacToe - Mobile</h1>
 <h4 align="center" style="margin-bottom:30px"> 
 	🚧  Projeto 🚀 Em construção...  🚧
@@ -33,7 +32,8 @@
 <div id="image" style="margin-top:60px;">
   <h1 align="center">✨ Indetidade do projeto atualmente</h1>
   <div style="display:flex; flex-direction: row; justify-content: center;" >
-    <img src="readme/projetoimage.png" width="300"/>
-    <img src="readme/projetoimage2.png" width="300"/>
+    <img src="readme/bluewin.gif" width="300"/>
+    <img src="readme/redwin.gif" width="300"/>
+    <img src="readme/draw.gif" width="300"/>
   </div>
 </div>
